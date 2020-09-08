@@ -7,7 +7,7 @@
 #define WEBIF_LIVELOG 1
 #define WEBIF_JQUERY 1
 //#define TOUCH 1
-//#define WITH_SSL 1
+#define WITH_SSL 1
 #if defined(__linux__) || defined(__CYGWIN__)
 #define HAVE_DVBAPI 1
 #endif
@@ -46,7 +46,7 @@
 #ifdef WITH_CARDREADER
 
 #define READER_NAGRA 1
-//#define READER_NAGRA_MERLIN 1
+#define READER_NAGRA_MERLIN 1
 #define READER_IRDETO 1
 #define READER_CONAX 1
 #define READER_CRYPTOWORKS 1

@@ -31,8 +31,8 @@
         PERM_OP(l,r,tt, 4,0x0f0f0f0fL); \
         }
 
-//OPENSSL_GLOBAL const DES_LONG DES_SPtrans[8][64] =
-const DES_LONG DES_SPtrans[8][64] =
+//OPENSSL_GLOBAL const DES_LONG DES_SPtrans_fix[8][64] =
+const DES_LONG DES_SPtrans_fix[8][64] =
 {
 	{
 		/* nibble 0 */
@@ -199,14 +199,14 @@ const DES_LONG DES_SPtrans[8][64] =
         LOAD_DATA_tmp(R,S,u,t,E0,E1); \
         t=ROTATE(t,4); \
         LL^= \
-            DES_SPtrans[0][(u>> 2L)&0x3f]^ \
-            DES_SPtrans[2][(u>>10L)&0x3f]^ \
-            DES_SPtrans[4][(u>>18L)&0x3f]^ \
-            DES_SPtrans[6][(u>>26L)&0x3f]^ \
-            DES_SPtrans[1][(t>> 2L)&0x3f]^ \
-            DES_SPtrans[3][(t>>10L)&0x3f]^ \
-            DES_SPtrans[5][(t>>18L)&0x3f]^ \
-            DES_SPtrans[7][(t>>26L)&0x3f]; }
+            DES_SPtrans_fix[0][(u>> 2L)&0x3f]^ \
+            DES_SPtrans_fix[2][(u>>10L)&0x3f]^ \
+            DES_SPtrans_fix[4][(u>>18L)&0x3f]^ \
+            DES_SPtrans_fix[6][(u>>26L)&0x3f]^ \
+            DES_SPtrans_fix[1][(t>> 2L)&0x3f]^ \
+            DES_SPtrans_fix[3][(t>>10L)&0x3f]^ \
+            DES_SPtrans_fix[5][(t>>18L)&0x3f]^ \
+            DES_SPtrans_fix[7][(t>>26L)&0x3f]; }
 
 #define IP(l,r) \
         { \
@@ -497,7 +497,7 @@ void DES_set_odd_parity(DES_cblock *key)
 }
 
 
-void DES_encrypt1(DES_LONG *data, DES_key_schedule *ks, int enc)
+void DES_encrypt1_fix(DES_LONG *data, DES_key_schedule *ks, int enc)
 {
 	register DES_LONG l, r, t, u;
 	register DES_LONG *s;
@@ -508,7 +508,7 @@ void DES_encrypt1(DES_LONG *data, DES_key_schedule *ks, int enc)
 	IP(r, l);
 	/*
 	 * Things have been modified so that the initial rotate is done outside
-	 * the loop.  This required the DES_SPtrans values in sp.h to be rotated
+	 * the loop.  This required the DES_SPtrans_fix values in sp.h to be rotated
 	 * 1 bit to the right. One perl script later and things have a 5% speed
 	 * up on a sparc2. Thanks to Richard Outerbridge
 	 * <71755.204@CompuServe.COM> for pointing this out.
@@ -641,11 +641,11 @@ static void mdc2_body(MDC2_CTX *c, const unsigned char *in, size_t len)
 
 		DES_set_odd_parity(&c->h);
 		DES_set_key_unchecked(&c->h, &k);
-		DES_encrypt1(d, &k, 1);
+		DES_encrypt1_fix(d, &k, 1);
 
 		DES_set_odd_parity(&c->hh);
 		DES_set_key_unchecked(&c->hh, &k);
-		DES_encrypt1(dd, &k, 1);
+		DES_encrypt1_fix(dd, &k, 1);
 
 		ttin0 = tin0 ^ dd[0];
 		ttin1 = tin1 ^ dd[1];

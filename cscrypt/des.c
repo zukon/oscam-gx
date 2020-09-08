@@ -329,7 +329,7 @@ static const uint32_t des_skb[8][64] =
 	}
 };
 
-static const uint32_t des_SPtrans[8][64] =
+static const uint32_t DES_SPtrans_fix[8][64] =
 {
 	{
 		0x00820200, 0x00020000, 0x80800000, 0x80820200,
@@ -629,25 +629,25 @@ static void des_encrypt_int(uint32_t* data, const uint32_t* ks, int8_t do_encryp
 				u=(r^ks[i+0 ]);
 				t=r^ks[i+0+1];
 				t=(_lrotr(t));
-				l^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				l^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 			{
 				u=(l^ks[i+2 ]);
 				t=l^ks[i+2+1];
 				t=(_lrotr(t));
-				r^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				r^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 			{
 				u=(r^ks[i+4 ]);
 				t=r^ks[i+4+1];
 				t=(_lrotr(t));
-				l^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				l^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 			{
 				u=(l^ks[i+6 ]);
 				t=l^ks[i+6+1];
 				t=(_lrotr(t));
-				r^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				r^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 		}
 	}
@@ -659,25 +659,25 @@ static void des_encrypt_int(uint32_t* data, const uint32_t* ks, int8_t do_encryp
 				u=(r^ks[i-0 ]);
 				t=r^ks[i-0+1];
 				t=(_lrotr(t));
-				l^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				l^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 			{
 				u=(l^ks[i-2 ]);
 				t=l^ks[i-2+1];
 				t=(_lrotr(t));
-				r^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				r^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 			{
 				u=(r^ks[i-4 ]);
 				t=r^ks[i-4+1];
 				t=(_lrotr(t));
-				l^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				l^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 			{
 				u=(l^ks[i-6 ]);
 				t=l^ks[i-6+1];
 				t=(_lrotr(t));
-				r^= des_SPtrans[1][(t )&0x3f]| des_SPtrans[3][(t>> 8)&0x3f]| des_SPtrans[5][(t>>16)&0x3f]| des_SPtrans[7][(t>>24)&0x3f]| des_SPtrans[0][(u )&0x3f]| des_SPtrans[2][(u>> 8)&0x3f]| des_SPtrans[4][(u>>16)&0x3f]| des_SPtrans[6][(u>>24)&0x3f];
+				r^= DES_SPtrans_fix[1][(t )&0x3f]| DES_SPtrans_fix[3][(t>> 8)&0x3f]| DES_SPtrans_fix[5][(t>>16)&0x3f]| DES_SPtrans_fix[7][(t>>24)&0x3f]| DES_SPtrans_fix[0][(u )&0x3f]| DES_SPtrans_fix[2][(u>> 8)&0x3f]| DES_SPtrans_fix[4][(u>>16)&0x3f]| DES_SPtrans_fix[6][(u>>24)&0x3f];
 			};
 		}
 	}

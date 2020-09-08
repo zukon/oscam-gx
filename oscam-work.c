@@ -307,12 +307,6 @@ void *work_thread(void *ptr)
 					cardreader_poll_status(reader);
 					break;
 
-#ifdef READER_NAGRA_MERLIN
-				case ACTION_READER_RENEW_SK:
-					CAK7_getCamKey(reader);
-					break;
-#endif
-
 				case ACTION_READER_INIT:
 					if(!cl->init_done)
 						{ reader_init(reader); }
